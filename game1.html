@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<style>
+
+div{
+
+border: 2px solid black;
+height: 500px;
+width: 500px;
+position: relative;
+
+  
+}
+
+
+#line1{
+
+    height: 0;
+    width: 150px;
+    position: absolute;
+    top: 10%;
+    
+}
+#line2{
+
+height: 150px;
+width: 0px;
+position: absolute;
+right: 10%;
+top: 20%;
+}
+
+
+
+</style>
+
+
+
+<body>
+    <script src="react.js"></script>
+    <script src="babel.js"></script>
+    <script src="reactdom.js"></script>
+
+
+
+    <div id="root">
+
+    </div>
+
+    <script type="text/babel">
+
+
+const leftMv = () =>{
+
+setInterval(() =>{
+
+
+
+})
+
+
+}
+
+
+var App = () => {
+
+
+return <div> 
+
+    <div id="line1"></div>
+        <div id="line2"></div>
+    <leftMv/>
+    <input   o/>
+
+
+
+    </div>
+
+}
+
+
+
+var root = ReactDOM.createRoot(document.querySelector('#root'))
+    root.render(<App/>)
+    
+
+
+
+
+
+
+
+
+
+
+    </script>
+</body>
+</html>

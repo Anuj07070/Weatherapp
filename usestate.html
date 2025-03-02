@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<style>
+.bg{
+color: blue;
+}
+
+.rg{
+    color: red;
+}
+
+.blg{
+
+font-size: 1000px;
+
+}
+
+
+
+</style>
+
+<body>
+<script src="react.js"></script>
+<script src="babel.js"></script>
+<script src="reactdom.js"></script>
+
+<div class="root"></div>
+<script type="text/babel">
+
+
+
+var Val = () => {
+
+
+    // var ref1 = React.useRef();
+    // var ref2 = React.useRef();
+    // var result = React.useRef();
+    // var [result,func]=React.useState(0)
+
+    // var Alert = () => {
+
+    //     const n1 = parseInt(ref1.current.value)
+    //     const n2 = parseInt(ref2.current.value)
+    //     const sum = n1+n2;
+    
+    //     func(sum)
+    //     if(result<100){
+    //         ref3.current.style.color='green'
+    //     }
+
+    //     else{
+    //         ref3.current.style.color='red'
+    //     }
+    // }
+ // <p><b>Result =</fzb><span ref={ref3}>0</span></p>
+
+    const [value1,func] = React.useState();
+    const [result,func1] = React.useState();
+    const [color,func2] = React.useState();
+
+const fnClick = () =>{
+                
+    const sum =parseInt(value1.n1)+parseInt(value1.n2);
+    func1(sum)
+
+    func2(sum > 100 ? 'rg':'bg')
+
+
+
+    // sum>100? func2({color:'red'}) : func2({color:'blue'}) ;
+    // if(sum<100){
+
+    //     func2({color:'red'})
+    // }
+    // else{
+
+    //     func2({color:'blue'}) 
+    // }
+}
+
+var inputchange = (eve) =>{
+
+    const {id,value}=eve.target;
+ func({...value1,[id]:value})
+}
+
+
+
+return <div>
+        <p><b>Input1</b> <input  id='n1' type="number" onChange={inputchange}/></p> 
+        <p><b>Input2</b> <input  id ='n2' type="number" onChange={inputchange} /></p>
+        <p><button onClick={fnClick}>sum</button></p>   
+        <p><b>Result =</b><span><h1 className={` 'blg'  ${color}`}>{result}</h1></span></p>
+    </div>
+}
+
+
+const root = ReactDOM.createRoot(document.getElementsByClassName('root')[0]);
+root.render(<Val/>)
+
+</script>
+
+</body>
+</html>

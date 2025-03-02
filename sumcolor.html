@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+<script src="react.js"></script>
+<script src="babel.js"></script>
+<script src="reactdom.js"></script>
+
+<div class="root"></div>
+<script type="text/babel">
+
+
+
+var Val = () => {
+    var ref1 = React.useRef();
+    var ref2 = React.useRef();
+    var ref3 = React.useRef();
+
+    var Alert = () => {
+
+        const n1 = parseInt(ref1.current.value)
+        const n2 = parseInt(ref2.current.value)
+        const sum = n1+n2;
+        ref3.current.innerHTML="<h1>"+sum+"</h1>";
+        if(sum<100){
+            ref3.current.style.color='green'
+        }
+
+        else{
+            ref3.current.style.color='red'
+        }
+    }
+
+return <div>
+        <p><b>Input1</b> <input ref={ref1} /></p> 
+        <p><b>Input2</b> <input ref={ref2} /></p>
+        <p><button onClick={Alert} >Sum</button></p>   
+        <p><b>Result =</b><span ref={ref3}>0</span></p>
+    </div>
+
+}
+
+
+const root = ReactDOM.createRoot(document.getElementsByClassName('root')[0]);
+root.render(<Val/>)
+
+</script>
+
+</body>
+</html>

@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Prime Number</title>
+</head>
+<body>
+
+<script src="react.js"></script>
+<script src="babel.js"></script>
+<script src="reactdom.js"></script>
+<!-- <div id="root"></div>
+<script type="text/babel">
+
+//prepare content
+
+var Prime = () => {
+var ref1 = React.useRef(); 
+var ref2 = React.useRef(); 
+var [res,func]= React.useState('Reverse')
+
+var Display = () =>{
+
+// Reverse a string
+var n1 = ref1.current.value;
+const c1 = n1.split('').reverse().join('');
+// ref2.current.innerText=c1
+func(c1)
+
+ref2.current.style.color='red'
+
+//Check Prime code
+// var check=0;
+// for(var i=2; i<(n1-1);i++){
+
+// if(n1%i==0){
+//     check=1;
+// }
+
+// }
+
+// if(check==0){
+//     ref2.current.innerText="Prime Number"
+// }
+// else{
+//     ref2.current.innerText=" Not Prime Number"
+// }
+// <p ref={ref2}></p>
+}
+return <div>
+    
+    <p><b>Number:</b><input ref={ref1}/></p>
+    <p><button onClick={Display}>Submit</button></p>
+    <p ref={ref2}>{res}</p>
+    
+    </div>    
+
+}
+var root = ReactDOM.createRoot(document.getElementById('root'));
+root.render(<Prime />)
+
+
+</script> -->
+
+
+<div  id="root"></div>
+<script type="text/babel">
+//    const A=()=>{
+//     const [data,setData]=React.useState('')
+//     const nameRef=React.useRef();
+//     const fnClick=()=>{
+//         setData(nameRef.current.value)
+//     }
+//      return <p>
+//                 <B ref={nameRef} /> 
+//                 <input type='button' value='submit' onClick={fnClick} />
+//                 <h3>My Data: {data} </h3>
+//         </p>
+//    }
+   
+
+// const B=React.forwardRef((props,myRef)=>{
+//     return <div>
+//         Name: <input type='text' ref={myRef}  />
+//      </div>
+// });
+
+// const App=()=>{
+//     return <div>
+//         <h1>Rendder APP</h1>
+//         <A />
+//         </div>
+
+// }
+// const root=ReactDOM.createRoot(document.getElementById('root'));
+// root.render(<App />)
+const B=(props)=>{
+                      const nameRef=React.useRef()
+                      const fnSendData=()=>{
+                          let value=nameRef.current.value;
+                          props.cb(value);
+                      }
+                      const fnChange = () =>{
+
+                        console.log(nameRef.current.value)
+                      }
+                     
+                          return <div>
+                              <h1>Am B component</h1>
+                              <p>Name:<input ref={nameRef} onChange={fnChange} /></p>
+                              <p><input type='button' value="send data" onClick={fnSendData} /></p>
+                          </div>
+                      
+              }
+              
+                 const A=()=>{
+                   const [myData,setMyData]=React.useState('nit')
+                      const fnGetData=(data)=>{
+                        setMyData(data)
+                      }
+              
+                        return <div>
+                            <h1>Am A component: {myData} </h1>
+                            <B  cb={fnGetData}  />
+                        </div>
+              
+                  }
+
+                    const App=()=>{
+                        
+                          return <div>
+                            <h1>App rendered</h1>
+                            <A />
+
+                            </div>
+                      }
+                      
+              
+                  const root=ReactDOM.createRoot(document.getElementById('root'));
+                  root.render(<App />)
+</script>
+
+
+</body>
+</html>

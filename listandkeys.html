@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+    <script src="react.js"></script>
+    <script src="babel.js"></script>
+    <script src="reactdom.js"></script>
+
+
+
+    <div id="root">
+
+    </div>
+
+    <script type="text/babel">
+
+
+
+
+
+ const App = () =>{
+
+    var player = ["Sachin","Kohli","Yuvraj","Dhoni","Anuj"]
+    return <div>
+
+        <ol>
+            
+          {  player.map((el,i,arr) => {
+
+                    return <li key={"li" +i}>{el}</li>
+            })
+        }
+
+
+       { <select>
+            
+            
+                 
+          {  player.map((el,i,arr) => {
+
+return <option key={"li" +i}>{el}</option>
+})
+}
+            
+            </select>
+        }
+
+
+
+       { <table border="2px" >
+            
+            <thead>
+                <tr>
+                <th>
+                    SNo
+                </th> 
+                <th>
+                    Name
+                </th>   
+                </tr>
+            </thead>
+
+
+
+            <tbody>
+                   
+          {  player.map((el,i,arr) => {
+
+return <tr key={"tr" +i}>
+    
+    <th>{i} </th>
+    <th>{el} </th>
+    
+    
+    </tr>
+})
+}
+                
+            </tbody>
+            
+            
+            
+            </table>
+        }
+
+        </ol>
+
+
+
+
+
+        </div>
+ }
+
+
+ const root = ReactDOM.createRoot(document.querySelector('#root'))
+ root.render(<App />)
+
+
+
+
+
+
+</script>
+
+</body>
+</html>

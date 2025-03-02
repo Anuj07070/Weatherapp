@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>React Chrome Browser</title>
+    <script src="react.js"></script>
+<script src="babel.js"></script>
+<script src="reactdom.js"></script>
+    <style>
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background: #f0f0f0;
+        }
+        .tabs {
+            display: flex;
+            background: #333;
+            padding: 10px;
+        }
+        .tab {
+            background: #555;
+            color: white;
+            padding: 8px 12px;
+            margin-right: 5px;
+            border-radius: 4px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+        }
+        .tab.active {
+            background: #222;
+        }
+        .tab button {
+            margin-left: 5px;
+            background: red;
+            border: none;
+            color: white;
+            cursor: pointer;
+        }
+        .tab-controls {
+            display: flex;
+            background: #ccc;
+            padding: 5px;
+            gap: 5px;
+        }
+        .tab-controls button {
+            padding: 5px;
+            cursor: pointer;
+        }
+        .address-bar {
+            flex: 1;
+            padding: 5px;
+        }
+        iframe {
+            width: 100%;
+            height: 85vh;
+            border: none;
+        }
+    </style>
+</head>
+<body>
+
+<div id="root"></div>
+
+<script type="text/babel">
+function BrowserApp() {
+    const [tabs, setTabs] = React.useState([{ id: 1, url: "https://www.google.com" }]);
+    const [activeTab, setActiveTab] = React.useState(1);
+    const [address, setAddress] = React.useState("https://www.google.com");
+
+    const navigateTo = (url) => {
+        setTabs(tabs.map(tab => tab.id === activeTab ? { ...tab, url } : tab));
+        setAddress(url);
+    };
+
+    const refreshPage = () => {
+        setAddress(tabs.find(tab => tab.id === activeTab)?.url || "https://www.google.com");
+    };
+
+    const goHome = () => {
+        navigateTo("https://www.google.com");
+    };
+
+    const handleKeyDown = (event) => {
+        if (event.key === "Enter") {
+            navigateTo(event.target.value);
+        }
+    };
+
+    const addTab = () => {
+        const newId = Date.now();
+        setTabs([...tabs, { id: newId, url: "https://www.google.com" }]);
+        setActiveTab(newId);
+        setAddress("https://www.google.com");
+    };
+
+    const closeTab = (event, id) => {
+        event.stopPropagation();
+        let newTabs = tabs.filter(tab => tab.id !== id);
+        if (newTabs.length === 0) newTabs = [{ id: 1, url: "https://www.google.com" }];
+        setTabs(newTabs);
+        setActiveTab(newTabs[0].id);
+        setAddress(newTabs[0].url);
+    };
+
+    const switchTab = (id) => {
+        setActiveTab(id);
+        setAddress(tabs.find(tab => tab.id === id)?.url || "https://www.google.com");
+    };
+
+    return (
+        <div>
+            {/* Tabs */}
+            <div className="tabs">
+                {tabs.map(tab => (
+                    <div key={tab.id} className={`tab ${tab.id === activeTab ? "active" : ""}`} onClick={() => switchTab(tab.id)}>
+                        Tab {tab.id} <button onClick={(e) => closeTab(e, tab.id)}>✖</button>
+                    </div>
+                ))}
+                <button onClick={addTab}>➕</button>
+            </div>
+
+            {/* Navigation Bar */}
+            <div className="tab-controls">
+                <button onClick={refreshPage}>🔄</button>
+                <button onClick={goHome}>🏠</button>
+                <input type="text" className="address-bar" value={address} onChange={(e) => setAddress(e.target.value)} onKeyDown={handleKeyDown} />
+            </div>
+
+            {/* Browser Window */}
+            <iframe src={address}></iframe>
+        </div>
+    );
+}
+
+// Render the React app inside #root
+const root = ReactDOM.createRoot(document.getElementById("root"));
+root.render(<BrowserApp />);
+</script>
+
+</body>
+</html>

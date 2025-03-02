@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script src="react.js"></script>
+    <script src="babel.js"></script>
+    <script src="reactdom.js"></script>
+    
+     <div id="root"></div>   
+    <script type="text/babel">
+    
+    // to create the content we use function component of react
+    //start of fuction character should be upper
+    function Player(props){
+
+        return <h1>My name is {props.name}, am from {props.loc}, runs are {props.run}</h1>
+    }
+
+    function Print(){
+
+        return <div>
+               <Player name="Sachin" loc="Mumbai" run="20000" /> 
+                <Player name="Dhoni" loc="Ranchi" run="10000" />
+                <Player name="Kohli" loc="Delhi" run="14000" />
+            </div>
+    }
+
+    
+    var root = ReactDOM.createRoot(document.querySelector('#root'))
+    root.render(<Print/>)
+    
+
+    
+</script>
+</body>
+</html>

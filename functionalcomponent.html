@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    
+</head>
+<body>
+
+    <style>
+        #dov{display: inline-block;
+        border: 5px solid black ;
+        width:48%;
+        margin: 2px;
+        height: 325px ;
+        text-align: center;
+        line-height: 20em;
+        }
+    </style>
+<script src="react.js"></script>
+<script src="babel.js"></script>
+<script src="reactdom.js"></script>
+
+ <div id="root"></div>   
+<script type="text/babel">
+
+
+
+// function Dov(props)
+var Dov = (props) => {
+// to pass the data from outside to function componenet we say it as props
+// as we know the return statement carries JSX content , so whenere any JS data coming in
+//component then make sure it closed in curly braces otherwise it won't work
+
+//object destructuring
+const {Job,num} = props;
+
+return <div id="dov">{Job}{num}</div>
+// return <div id="dov">{props.Job}{props.num}</div>
+}
+
+// function App()
+var App = () => {
+// as DOV is user defined function component we can give any number of attribute to this user defined
+//element 
+    return <div><div><Dov  num="1" Job="A"/><Dov  num="2"/></div>
+    <div><Dov num="3"/> <Dov num="4"/></div>
+    </div>
+}
+
+
+var root = ReactDOM.createRoot(document.querySelector('#root'))
+root.render(<App/>)
+
+</script>
+</body>
+</html>
